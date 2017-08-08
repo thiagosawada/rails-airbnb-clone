@@ -1,2 +1,12 @@
 <h1>Users#show</h1>
 <p>Find me in app/views/users/show.html.erb</p>
+
+<% current_user.meetings.each do |meeting| %>
+  <ul>
+    <li><%= meeting.city %></li>
+    <li><%= meeting.location %></li>
+    <li><%= meeting.duration %></li>
+    <li><%= meeting.group_size %></li>
+  </ul>
+<% end %>
+

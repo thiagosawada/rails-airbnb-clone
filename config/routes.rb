@@ -10,9 +10,7 @@ Rails.application.routes.draw do
   resources :reviews, only: [:new, :create]
   resources :meetings, only: [:new, :create, :edit, :update, :destroy, :index]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  namespace :profiles do
-    resources :users, only: [:show]
 
+  resources :users, only: [:show]
 
-  end
 end

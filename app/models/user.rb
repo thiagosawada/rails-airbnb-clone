@@ -5,7 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :groups
-  has_many :meetings, through: :groups
+  has_many :meetings
   has_many :coach_meetings, class_name: "Meeting"
   has_many :reviews
 
