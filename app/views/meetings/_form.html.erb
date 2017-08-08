@@ -1,8 +1,12 @@
 
 <%= simple_form_for(@meeting) do |m|  %>
-  <%= m.error :base %>
-  <%= m.input :photo %>
-  <%= m.input :photo_cache, as: :hidden %>
-  <%= m.input :name %>
+  <%= m.error :city %>
+  <%= m.input :location %>
+  <%= m.input :duration %>
+  <%= m.input :group_size %>
+
   <%= m.submit %>
 <% end %>
+
+
+
