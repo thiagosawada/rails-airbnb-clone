@@ -1,0 +1,8 @@
+
+<%= simple_form_for(@meeting) do |m|  %>
+  <%= m.error :base %>
+  <%= m.input :photo %>
+  <%= m.input :photo_cache, as: :hidden %>
+  <%= m.input :name %>
+  <%= m.submit %>
+<% end %>
