@@ -1,26 +1,33 @@
 <div class="text-center">
-  <div id="header">
-    <h1>make me move</h1>
-  </div>
-  <div class="wrapper-blue">
-    <h2>Encontre seu <strong>教练</strong>!</h2>
-    <div class="row">
-      <%= form_tag meetings_path, method: :get do -%>
-        <%= text_field_tag :where %>
-        <%= text_field_tag :category %>
+  <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://res.cloudinary.com/dpg1ipkol/image/upload/v1502301417/lp_gxnqiq.jpg');">
+    <div id="header">
+      <h1>Make Me Move</h1>
+    </div>
 
-       <%= submit_tag 'Search', class: "btn btn-primary" %>
-      <% end %>
-
-      <% if user_signed_in? %>
-        <%= link_to "Create a new meeting", new_meeting_path, class: "btn btn-primary" %>
-        <%= link_to "Show my meetings", user_path(current_user), class: "btn btn-primary" %>
-      <% end %>
+      <div class="banner-content">
+      <h2>Encontre seu <strong>coach</strong>!</h2>
+      <div class="row">
+        <%= form_tag meetings_path, method: :get do -%>
+        <div class="placeholder">
+          <%= text_field_tag :where, nil, placeholder: "Ex: São Paulo" %>
+          <%= text_field_tag :category, nil, placeholder: "Ex: Slackline" %>
+          <%= submit_tag 'Search', class: "btn btn-xs btn-primary" %>
+          <% end %>
+        </div>
+        <div class="button-create-show">
+        <% if user_signed_in? %>
+          <%= link_to "Create a new meeting", new_meeting_path, class: "btn btn-primary" %>
+          <%= link_to "Show my meetings", user_path(current_user), class: "btn btn-primary" %>
+        <% end %>
+      </div>
     </div>
   </div>
-  <div class="wrapper-grey">
+</div>
+</div>
+
+  <div class="wrapper-grey text-center">
     <div class="container">
-      <h2>Nós selecionamos <strong>教练</strong> para <strong>você</strong></h2>
+      <h2>Nós selecionamos <strong>os melhores treinadores</strong> para <strong>você</strong></h2>
       <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-4">
           <div class="card-white">

@@ -1,24 +1,20 @@
-<p>Aqui vai ficar a descrição do user e da @meeting</p>
+<div class="container">
+<div class="container_meeting_show">
+<h1>Evento: <%= @meeting.name%></h1>
 
+  <%= link_to "Edit your meeting", edit_meeting_path(@meeting.id), class: "btn btn-xs btn-primary" %>
 
-  <ul>
-    <li><%= current_user.first_name %></li>
-    <li><%= current_user.last_name %></li>
-  </ul>
-
-  <ul>
-    <li><%= @meeting.name %></li>
-    <li><%= @meeting.city %></li>
-    <li><%= @meeting.location %></li>
-    <li><%= @meeting.duration %></li>
-    <li><%= @meeting.group_size %></li>
-    <li><%= @meeting.category %></li>
-    <li><%= @meeting.description %></li>
-    <li><%= @meeting.date %></li>
+  <ul style="list-style-type: none">
+    <li>Categoria:<%= @meeting.category %></li>
+    <li>Cidade do evento: <%= @meeting.city %></li>
+    <li>Local do evento: <%= @meeting.location %></li>
+    <li>Duração do evento: <%= @meeting.duration %></li>
+    <li>Capacidade do evento: <%= @meeting.group_size %> pessoas</li>
+    <li>Data:<%= @meeting.date %></li>
+    <li>Descrição: <%= @meeting.description %></li>
   </ul>
 
 
-
-
-
-
+  <%= link_to "Delete your meeting", meeting_path(@meeting.id), class: "btn btn-xs btn-danger", method: :delete, data: {confirm: "Are you sure?" } %>
+</div>
+</div>
