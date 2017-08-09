@@ -3,11 +3,20 @@ class MeetingsController < ApplicationController
 
   def index
     @meetings = Meeting.all
+
+    @meetings_geo = Meeting.where.not(latitude: nil, longitude: nil)
+
+    @hash = Gmaps4rails.build_markers(@meetings_geo) do |meeting, marker|
+      marker.lat meeting.latitude
+      marker.lng meeting.longitude
+    end
+
     if params[:where].present?
       @meetings = @meetings.where('lower(city) = ?', params[:where].downcase)
       if params[:category].present?
         @meetings = @meetings.where('lower(category) = ?', params[:category].downcase)
       end
+
     end
   end
 

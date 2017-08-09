@@ -1,9 +1,24 @@
 
+<!-- TODO: Put your HTML code in here -->
+<div class="container text-center">
+
+  <div class="row middle-page">
+
+    <div class="col-xs-12 col-md-8 middle-page" >
+      <ul>
+        <%3.times do%>
+          <div class="col-xs-12 col-md-4">
+            <div class="card-white">
+              <h3>Exemplo</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus ea corporis dignissimos. Alias sed delectus at eaque sit ut recusandae odit quae repellendus velit deleniti maxime quaerat, reiciendis cupiditate dignissimos.
+              </p>
+
 <h1>Aqui nós mostramos as meetings de acordo com o filtro</h1>
 
   <ul>
   <% @meetings.each do |meeting| %>
-    <li><%= meeting.name %></li>
+    <li><%= link_to meeting.name, meeting_path(meeting) %></li>
     <li><%= meeting.city %></li>
     <li><%= meeting.location %></li>
     <li><%= meeting.duration %></li>
@@ -53,17 +68,45 @@
             <div class="form-group">
               <input type="text" id="address" placeholder="Address" class="form-control">
               <input type="submit" id="submit_address" class="btn btn-primary" value="Submit">
+
             </div>
-          </form>
-
-
-
-          <div id="map" style="height: 500px"></div>
-
-        </div>
-      </div>
+          </div>
+        <% end %>
+      </ul>
     </div>
 
+    <div class="col-xs-12 col-md-4">
+      <form action="" class="form-inline">
+        <div class="form-group">
+          <input type="text" id="address" placeholder="Address" class="form-control">
+          <input type="submit" id="submit_address" class="btn btn-primary" value="Submit">
+        </div>
+      </form>
+
+
+      <div id="map" style="height: 500px"></div>
+
+    </div>
+  </div>
+</div>
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function() {
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
+      });
+    });
+  <% end %>
+<% end %>
 
     <!-- Including Bootstrap JS (with its jQuery dependency) so that dynamic components work -->
 
@@ -71,6 +114,4 @@
     <script src="js/app.js"></script>
   </body>
 </html>
-
-
 
