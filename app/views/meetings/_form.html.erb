@@ -1,16 +1,19 @@
-
-<%= simple_form_for(@meeting) do |m|  %>
-  <%= m.error :base %>
-  <%= m.input :name %>
-  <%= m.input :city %>
-  <%= m.input :location %>
-  <%= m.input :duration %>
-  <%= m.input :group_size %>
-  <%= m.input :category %>
-  <%= m.input :description %>
-  <%= m.input :date %>
-  <%= m.submit %>
-<% end %>
+<div class="container">
+  <%= simple_form_for(@meeting) do |m|  %>
+    <%= m.error :base %>
+    <%= m.input :name %>
+    <%= m.input :city %>
+    <%= m.input :location %>
+    <%= m.input :duration %>
+    <%= m.input :group_size %>
+    <%= m.input :category %>
+    <%= m.input :description %>
+    <%= m.input :date %>
+    <%= m.input :photo %>
+    <%= m.input :photo_cache, as: :hidden %>
+    <%= m.submit %>
+  <% end %>
+</div>
 
 
 
