@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show]
 
   def index
     @users = User.all
   end
 
   def show
+    @meetings = @user.meetings
   end
 
   def new
@@ -33,7 +35,12 @@ class UsersController < ApplicationController
 
 private
 
+  def set_user
+    @user = User.find(params[:id])
+  end
+
   def user_params
+    params.require(:user).permit(:first_name, :last_name, :username, :about, :email, :birth_day, :user_city, :gender)
   end
 
 end

@@ -3,7 +3,7 @@ class Meeting < ApplicationRecord
   belongs_to :user
 
   geocoded_by :address
-  after_validation :geocode, if: :address_changed?
+  after_validation :geocode, if: :location_changed? || :city_changed?
 
   def address
     [:location, :city].compact.join(', ')
