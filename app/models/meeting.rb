@@ -1,4 +1,5 @@
 class Meeting < ApplicationRecord
+  mount_uploader :photo, PhotoUploader
   has_many :groups
   belongs_to :user
 
