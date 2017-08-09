@@ -41,13 +41,13 @@ ActiveRecord::Schema.define(version: 20170809145815) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "latitude"
-    t.float "longitude"
     t.string "category"
     t.text "description"
     t.string "time"
     t.datetime "date"
     t.string "name"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["user_id"], name: "index_meetings_on_user_id"
   end
 

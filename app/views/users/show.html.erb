@@ -4,7 +4,7 @@
 
 <% current_user.meetings.each do |meeting| %>
   <ul>
-    <li><%= link_to meeting.name, edit_meeting_path(meeting.id) %></li>
+    <li><%= link_to meeting.name, meeting_path(meeting.id) %></li>
     <li><%= meeting.city %></li>
     <li><%= meeting.location %></li>
     <li><%= meeting.duration %></li>
