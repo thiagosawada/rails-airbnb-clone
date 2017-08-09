@@ -2,6 +2,12 @@ class MeetingsController < ApplicationController
 
   def index
     @meetings = Meeting.all
+    @meetings_geo = Meeting.where.not(latitude: nil, longitude: nil)
+
+    @hash = Gmaps4rails.build_markers(@meetings_geo) do |meeting, marker|
+      marker.lat meeting.latitude
+      marker.lng meeting.longitude
+    end
   end
 
   def new
