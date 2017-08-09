@@ -3,12 +3,12 @@ class MeetingsController < ApplicationController
 
   def index
     @meetings = Meeting.all
-    # @meetings = @meetings.where('lower(city) = ?', params[:where].downcase) if params[:where].present?
-    # if params[:category].present?
-    #   category = Meeting.find(params[:category])
-    #   @meetings = @meetings.where(category_id: category.id)
-    # end
-
+    if params[:where].present?
+      @meetings = @meetings.where('lower(city) = ?', params[:where].downcase)
+      if params[:category].present?
+        @meetings = @meetings.where('lower(category) = ?', params[:category].downcase)
+      end
+    end
   end
 
   def new
@@ -49,7 +49,7 @@ class MeetingsController < ApplicationController
   end
 
   def meeting_params
-    params.require(:meeting).permit(:city, :location, :duration, :group_size, :name, :category)
+    params.require(:meeting).permit(:city, :location, :duration, :group_size, :name, :category, :description, :date)
   end
 
 end

@@ -1,8 +1,8 @@
 
 <%= form_tag meetings_path, method: :get do -%>
   <%= text_field_tag :where %>
-  <%= select_tag "category", options_from_collection_for_select(Meeting.all, "id", "category") %>
-  <%= date_field_tag :when %>
+  <%= text_field_tag :category %>
+
   <%= submit_tag 'Search', class: "btn btn-primary" %>
 <% end -%>
 

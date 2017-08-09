@@ -4,7 +4,6 @@
 <% current_user.meetings.each do |meeting| %>
   <ul>
     <li><%= link_to meeting.name, edit_meeting_path(meeting.id) %></li>
-    <li><%= meeting.name %></li>
     <li><%= meeting.city %></li>
     <li><%= meeting.location %></li>
     <li><%= meeting.duration %></li>
@@ -12,7 +11,6 @@
     <li><%= meeting.category %></li>
     <li><%= meeting.description %></li>
     <li><%= meeting.date %></li>
-    <li><%= link_to "Delete your meeting", meeting_path(meeting.id), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure?" } %> </li>
   </ul>
 <% end %>
 

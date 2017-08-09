@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170808210012) do
+ActiveRecord::Schema.define(version: 20170809145815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20170808210012) do
     t.string "category"
     t.text "description"
     t.string "time"
-    t.date "date"
+    t.datetime "date"
     t.string "name"
     t.index ["user_id"], name: "index_meetings_on_user_id"
   end
