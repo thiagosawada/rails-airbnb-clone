@@ -14,7 +14,7 @@ gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'cloudinary'
 gem 'jquery-rails'
-gem  'carrierwave', '~> 0.11.2'
+gem 'carrierwave', '~> 0.11.2'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'faker'
@@ -32,14 +32,20 @@ end
 
 # Authentication
 gem 'devise'
+
 gem 'omniauth-facebook'
 
+gem 'faker'
+
+
+
 group :development, :test do
-  gem 'better_errors'
-  gem 'binding_of_caller'
+  # gem 'better_errors'
+  # gem 'binding_of_caller'
   gem 'listen', '~> 3.0.5'
   gem 'pry-byebug'
   gem 'pry-rails'
+  gem 'web-console'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end

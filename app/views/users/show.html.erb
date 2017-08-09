@@ -1,3 +1,23 @@
+
+<h1>Users#show</h1>
+<p>Clique na meeting que você quer editar</p>
+
+<% current_user.meetings.each do |meeting| %>
+  <ul>
+    <li><%= link_to meeting.name, edit_meeting_path(meeting.id) %></li>
+    <li><%= meeting.city %></li>
+    <li><%= meeting.location %></li>
+    <li><%= meeting.duration %></li>
+    <li><%= meeting.group_size %></li>
+    <li><%= meeting.category %></li>
+    <li><%= meeting.description %></li>
+    <li><%= meeting.date %></li>
+  </ul>
+<% end %>
+
+<%= link_to "Back to home", root_path, class: "btn btn-primary" %>
+
+
 <div class="container">
   <div class="row show">
     <div class="col-xs-12 col-md-8">
@@ -62,41 +82,3 @@
 <script src="https://maps.googleapis.com/maps/api/js"></script>
 <script>
 
-$(function(){
-
-  $("#submit").click(function(e){
-    e.preventDefault();
-
-    var address = $("#address").val();
-    var url = "https://maps.googleapis.com/maps/api/geocode/json?"
-    var position = {};
-
-    $.ajax({
-      type: "GET",
-      url: url,
-      data: {
-        address : address,
-        sensor : false
-      },
-      success: function(data) {
-        position.lat = data.results[0].geometry.location.lat;
-        position.lng = data.results[0].geometry.location.lng;
-        $("#display-coordinates").empty().append("<li class='list-group-item'>Latitude: " + position.lat + "</li>").append("<li class='list-group-item'>Longetude: " + position.lat + "</li>");
-        var map = new google.maps.Map(document.getElementById('map'), {
-                    center: { lat: position.lat, lng: position.lng },
-                    zoom: 15
-                  });
-        var marker = new google.maps.Marker({
-                        position: position,
-                        map: map
-                      });
-      },
-      error: function(jqXHR) {
-        console.error(jqXHR.responseText);
-      }
-    });
-  });
-
-});
-
-</script>
