@@ -10,7 +10,7 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-      <%= link_to "Atividades", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Atividades", meetings_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
@@ -18,8 +18,7 @@
           <%= image_tag avatar_url(current_user.facebook_picture_url), class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
-              <%#= link_to profiles_user(current_user) do %>
-              <%= link_to "#" do %>
+              <%= link_to user_path(current_user) do %>
                 <i class="fa fa-user"></i> Perfil
               <% end %>
             </li>
@@ -56,8 +55,7 @@
         <% if user_signed_in? %>
 
           <li>
-            <%#= link_to profiles_user(current_user) do %>
-            <%= link_to "#" do %>
+            <%= link_to user_path(current_user) do %>
               <i class="fa fa-user"></i> Perfil
             <% end %>
           </li>
