@@ -24,13 +24,16 @@ gem 'omniauth-facebook'
 
 # Authentication
 gem 'devise'
+gem 'faker'
+gem "geocoder"
 
 group :development, :test do
-  gem 'better_errors'
-  gem 'binding_of_caller'
+  # gem 'better_errors'
+  # gem 'binding_of_caller'
   gem 'listen', '~> 3.0.5'
   gem 'pry-byebug'
   gem 'pry-rails'
+  gem 'web-console'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end

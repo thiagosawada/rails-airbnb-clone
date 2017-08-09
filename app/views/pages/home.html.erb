@@ -1,4 +1,17 @@
 
+<%= form_tag meetings_path, method: :get do -%>
+  <%= text_field_tag :where %>
+  <%= text_field_tag :category %>
+
+  <%= submit_tag 'Search', class: "btn btn-primary" %>
+<% end -%>
+
+<% if user_signed_in? %>
+  <%= link_to "Create a new meeting", new_meeting_path, class: "btn btn-primary" %>
+  <%= link_to "Show my meetings", user_path(current_user), class: "btn btn-primary" %>
+<% end %>
+
+
 <div class="text-center">
   <div id="header">
     <h1>make me move</h1>
