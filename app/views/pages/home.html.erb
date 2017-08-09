@@ -1,5 +1,3 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
 
 <%= form_tag meetings_path, method: :get do -%>
   <%= text_field_tag :where %>
@@ -12,3 +10,67 @@
   <%= link_to "Create a new meeting", new_meeting_path, class: "btn btn-primary" %>
   <%= link_to "Show my meetings", user_path(current_user), class: "btn btn-primary" %>
 <% end %>
+
+
+<div class="text-center">
+  <div id="header">
+    <h1>make me move</h1>
+  </div>
+  <div class="wrapper-blue">
+    <h2>Encontre seu <strong>教练</strong>!</h2>
+    <div class="row">
+      <form class="form-inline">
+        <div class="form-group">
+          <select class="form-control" style="width: 250px;">
+            <option value="" disabled selected>Qual cidade?</option>
+            <option>Alfenas</option>
+            <option>Belo Horizonte</option>
+            <option>Cuiabá</option>
+            <option>Madrid</option>
+            <option>São Paulo</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <select class="form-control" style="width: 250px;">
+            <option value="" disabled selected>Qual esporte?</option>
+            <option>Corrida</option>
+            <option>Futebol</option>
+            <option>Yoga</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-warning">Buscar</button>
+      </form>
+    </div>
+  </div>
+  <div class="wrapper-grey">
+    <div class="container">
+      <h2>Nós selecionamos <strong>教练</strong> para <strong>você</strong></h2>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="card-white">
+            <h3>Mo Farah</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus ea corporis dignissimos. Alias sed delectus at eaque sit ut recusandae odit quae repellendus velit deleniti maxime quaerat, reiciendis cupiditate dignissimos.
+            </p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="card-white">
+            <h3>Neymar Jr.</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus ea corporis dignissimos. Alias sed delectus at eaque sit ut recusandae odit quae repellendus velit deleniti maxime quaerat, reiciendis cupiditate dignissimos.
+            </p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="card-white">
+            <h3>Federer</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus ea corporis dignissimos. Alias sed delectus at eaque sit ut recusandae odit quae repellendus velit deleniti maxime quaerat, reiciendis cupiditate dignissimos.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
