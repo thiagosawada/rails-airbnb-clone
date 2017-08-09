@@ -4,6 +4,8 @@
       <h1>Make Me Move</h1>
     </div>
 
+
+
       <div class="banner-content">
       <h2>Encontre seu <strong>coach</strong>!</h2>
       <div class="row">
@@ -15,15 +17,19 @@
           <% end %>
         </div>
         <div class="button-create-show">
+
         <% if user_signed_in? %>
           <%= link_to "Create a new meeting", new_meeting_path, class: "btn btn-primary" %>
           <%= link_to "Show my meetings", user_path(current_user), class: "btn btn-primary" %>
         <% end %>
+
       </div>
     </div>
   </div>
 </div>
+
 </div>
+
 
   <div class="wrapper-grey text-center">
     <div class="container">

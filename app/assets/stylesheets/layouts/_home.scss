@@ -1,46 +1,54 @@
 body {
-  font-weight: 100;
-  font-size: 16px;
-  line-height: 1.4;
-  color: $black;
+ font-weight: 100;
+ font-size: 16px;
+ line-height: 1.4;
+ color: $black;
 }
-
 h2 {
+
   font-weight: 200;
   font-size: 25px;
   padding: 20px;
+
 }
 
 .wrapper-blue {
-  background: $green;
-  color: white;
-  padding: 2em 0;
+ background: $green;
+ color: white;
+ padding: 2em 0;
 }
 .wrapper-grey {
-  background: #EDEFF0;
-  color: #4e4e4e;
+ background: #EDEFF0;
+ color: #4e4e4e;
 }
 
 #header {
+
+ color: #828282;
+ padding: 30px;
+}
+
+.banner {
+ color: $white;
+ height: 70vh;
+ background-size: cover !important;
+  h1 {
+    color: $white;
+    font-size: 60px;
+  }
+}
+
+.placeholder {
+ color: grey;
+}
+.button-create-show {
+ padding: 25px;
+
   color: #828282;
   padding: 30px;
 }
 
-.banner {
-  color: $white;
-  height: 70vh;
-  /* if you have a 70px navbar => height: calc(100vh - 70px); */
-  background-size: cover !important;
- h1 {
-  color: $white;
-  font-size: 60px;
- }
-}
 
-.placeholder {
-  color: grey
-}
 
-.button-create-show {
-  padding: 25px;
-}
+
+
