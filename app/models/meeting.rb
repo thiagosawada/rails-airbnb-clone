@@ -2,14 +2,14 @@ class Meeting < ApplicationRecord
   has_many :groups
   belongs_to :user
 
-  geocoded_by :address
-  after_validation :geocode, if: :address_changed?
+  geocoded_by :location
+  after_validation :geocode, if: :location_changed?
 
-  def address
-    [location, city].compact.join(', ')
-  end
+  # def address
+  #   [location, city].compact.join(', ')
+  # end
 
-  validates :name, :duration, :group_size, :category, presence: true
+  validates :name, :duration, :group_size, :category, :location, :city, presence: true
 
   validate :date_cannot_be_in_the_past
   def date_cannot_be_in_the_past

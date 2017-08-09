@@ -17,7 +17,7 @@ gem 'jquery-rails'
 gem 'carrierwave', '~> 0.11.2'
 gem 'sass-rails'
 gem 'uglifier'
-gem 'faker'
+
 
 
 

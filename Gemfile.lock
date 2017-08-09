@@ -252,10 +252,7 @@ DEPENDENCIES
   figaro
   font-awesome-sass
   geocoder
-<<<<<<< HEAD
   gmaps4rails
-=======
->>>>>>> 1d50e3679c0ec43981b6cfa890e308d553008daa
   jbuilder (~> 2.0)
   jquery-rails
   listen (~> 3.0.5)

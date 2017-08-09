@@ -18,7 +18,7 @@
 
   <ul>
   <% @meetings.each do |meeting| %>
-    <li><%= meeting.name %></li>
+    <li><%= link_to meeting.name, meeting_path(meeting) %></li>
     <li><%= meeting.city %></li>
     <li><%= meeting.location %></li>
     <li><%= meeting.duration %></li>
