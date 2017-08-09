@@ -2,12 +2,12 @@ class Meeting < ApplicationRecord
   has_many :groups
   belongs_to :user
 
-  geocoded_by :location
-  after_validation :geocode, if: :location_changed?
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
 
-  # def address
-  #   [location, city].compact.join(', ')
-  # end
+  def address
+    [:location, :city].compact.join(', ')
+  end
 
   validates :name, :duration, :group_size, :category, :location, :city, presence: true
 
