@@ -1,0 +1,46 @@
+// @import "config/fonts";
+// @import "config/colors";
+// @import "config/bootstrap_variables";
+
+.show {
+  color: $black;
+}
+
+.flex-box {
+  display: flex;
+  align-items: center;
+}
+
+#perfil {
+  margin: 15px 0;
+  background: $white;
+  padding: 15px;
+}
+
+#avatar {
+  margin-right: 15px;
+}
+
+.reviews {
+  background: $green;
+  padding: 13px;
+  margin-top: 15px;
+
+  .review {
+    background: $white;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+  }
+}
+
+.meetings {
+  padding: 5px 15px;
+  background: $white;
+}
+
+.card-coach {
+  width: 30%;
+  display: inline-block;
+  margin: 0 3px;
+}
