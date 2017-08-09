@@ -5,10 +5,13 @@ body {
  color: $black;
 }
 h2 {
- font-weight: 200;
- font-size: 25px;
- padding: 20px;
+
+  font-weight: 200;
+  font-size: 25px;
+  padding: 20px;
+
 }
+
 .wrapper-blue {
  background: $green;
  color: white;
@@ -20,6 +23,7 @@ h2 {
 }
 
 #header {
+
  color: #828282;
  padding: 30px;
 }
@@ -39,4 +43,12 @@ h2 {
 }
 .button-create-show {
  padding: 25px;
+
+  color: #828282;
+  padding: 30px;
 }
+
+
+
+
+
