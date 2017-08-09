@@ -24,6 +24,8 @@ gem 'omniauth-facebook'
 
 # Authentication
 gem 'devise'
+gem 'faker'
+gem "geocoder"
 
 group :development, :test do
   gem 'better_errors'

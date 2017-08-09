@@ -1,0 +1,15 @@
+<h1>Aqui nós mostramos as meetings de acordo com o filtro</h1>
+  <ul>
+  <%= @meetings %>
+  <%= @meeting.find(1) %>
+  <% @meetings.each do |meeting| %>
+    <li><%= meeting.name %></li>
+    <li><%= meeting.city %></li>
+    <li><%= meeting.location %></li>
+    <li><%= meeting.duration %></li>
+    <li><%= meeting.group_size %></li>
+    <li><%= meeting.category %></li>
+    <li><%= meeting.description %></li>
+    <li><%= meeting.date %></li>
+  <% end %>
+  </ul>

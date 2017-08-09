@@ -1,4 +1,14 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
 
-<%= link_to "Create a new meeting", new_meeting_path, class: "btn btn-primary" %>
+<%= form_tag meetings_path, method: :get do -%>
+  <%= text_field_tag :where %>
+  <%= select_tag "category", options_from_collection_for_select(Meeting.all, "id", "category") %>
+  <%= date_field_tag :when %>
+  <%= submit_tag 'Search', class: "btn btn-primary" %>
+<% end -%>
+
+<% if user_signed_in? %>
+  <%= link_to "Create a new meeting", new_meeting_path, class: "btn btn-primary" %>
+  <%= link_to "Show my meetings", user_path(current_user), class: "btn btn-primary" %>
+<% end %>
