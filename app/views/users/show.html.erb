@@ -1,2 +1,84 @@
+
 <h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<p>Clique na meeting que você quer editar</p>
+
+<% current_user.meetings.each do |meeting| %>
+  <ul>
+    <li><%= link_to meeting.name, edit_meeting_path(meeting.id) %></li>
+    <li><%= meeting.city %></li>
+    <li><%= meeting.location %></li>
+    <li><%= meeting.duration %></li>
+    <li><%= meeting.group_size %></li>
+    <li><%= meeting.category %></li>
+    <li><%= meeting.description %></li>
+    <li><%= meeting.date %></li>
+  </ul>
+<% end %>
+
+<%= link_to "Back to home", root_path, class: "btn btn-primary" %>
+
+
+<div class="container">
+  <div class="row show">
+    <div class="col-xs-12 col-md-8">
+      <div class="row">
+        <div id="perfil">
+
+          <div class="flex-box">
+            <div id="avatar">
+              <%= image_tag "http://placehold.it/100x100", class: "img-circle" %>
+            </div>
+
+            <div>
+              <h4 id="nome">Fora Temer!</h4>
+              <p id="sobre">Mimimimi mimimi mimimimi mimimimi mimimimimimi </p>
+            </div>
+          </div>
+
+          <div id="category-description">
+            <h5>Derrubada de presidente golpista</h5>
+            <p>Mimimimimimi mimimi mimi mimimimi mimimimimi mimimi mimimimi</p>
+          </div>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="meetings show">
+          <h5 class="text-center">Veja outros encontros agendados</h5>
+          <div class="text-center">
+            <% 3.times do %>
+              <%= render 'card' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div id="map" style="height: 300px"></div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-md-4">
+      <div class="reviews show">
+        <div class="text-center">
+          <h4>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </h4>
+        </div>
+        <h4 class="text-center">Reviews</h4>
+
+        <% 5.times do %>
+          <%= render 'review' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script>
+

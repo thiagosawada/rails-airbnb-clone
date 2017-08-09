@@ -1,10 +1,14 @@
 
 <%= simple_form_for(@meeting) do |m|  %>
-  <%= m.error :city %>
+  <%= m.error :base %>
+  <%= m.input :name %>
+  <%= m.input :city %>
   <%= m.input :location %>
   <%= m.input :duration %>
   <%= m.input :group_size %>
-
+  <%= m.input :category %>
+  <%= m.input :description %>
+  <%= m.input :date %>
   <%= m.submit %>
 <% end %>
 

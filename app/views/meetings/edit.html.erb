@@ -1,2 +1,8 @@
 <h1>Meetings#edit</h1>
 <p>Find me in app/views/meetings/edit.html.erb</p>
+
+
+
+<%= render partial: 'form' %>
+
+  <%= link_to "Delete your meeting", meeting_path(@meeting.id), class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure?" } %>
