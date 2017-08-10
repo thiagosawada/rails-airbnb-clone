@@ -4,10 +4,10 @@
 
     <div class="col-xs-12 col-md-6">
 
-      <div class="card-meeting-head" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('<%= cl_image_path @meeting.photo.url %>');">
+      <div class="card-meeting-head" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('<%= cl_image_path @meeting.category.photo %>');">
 
         <div class="card-meeting-details">
-          <h2><strong><%= @meeting.category %></strong></h2>
+          <h2><strong><%= @meeting.category.name %></strong></h2>
           <h2>Evento: <strong><%= @meeting.name%></strong></h2>
           <p><%= @meeting.city %></p>
         </div>
