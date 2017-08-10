@@ -7,7 +7,7 @@ class Meeting < ApplicationRecord
   after_validation :geocode, if: :location_changed? || :city_changed?
 
   def address
-    [:location, :city].compact.join(', ')
+    [location, city].compact.join(', ')
   end
 
   validates :name, :duration, :group_size, :category, :location, :city, presence: true
