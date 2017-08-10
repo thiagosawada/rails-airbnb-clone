@@ -6,35 +6,41 @@
 
           <div class="flex-box">
             <div id="avatar">
+
               <%= image_tag "http://placehold.it/100x100", class: "img-circle" %>
             </div>
 
             <div>
-              <h4 id="nome"><%= "#{@user.first_name} #{@user.last_name}"  %></h4>
-              <p id="sobre">Aqui vai a descrição do coach</p>
+              <h4 id="nome"><i class="fa fa-user-o" aria-hidden="true"></i>
+              <%= "#{@user.first_name} #{@user.last_name}"  %></h4>
+              <p id="sobre"><strong><i class="fa fa-map-marker" aria-hidden="true"></i>
+              </strong> <%= @user.user_city %></p>
+              <p id="sobre"> <%= @user.about %></p>
+              <p id="sobre"> <%= @user.facebook_picture_url %></p>
             </div>
           </div>
 
-          <div id="category-description">
-            <h5>Atividade</h5>
-            <p>Aqui vai a descrição da atividade</p>
-          </div>
+
+
+            <div id="category-description">
+            <p><strong>Saiba mais sobre as modalidades que eu dou aula:</strong></p>
+              <h5><%=@user.meetings.first.category%></h5>
+              <p><%=@user.meetings.first.description%></p>
+            </div>
+
 
         </div>
       </div>
+
       <div class="row">
         <div class="meetings show">
-          <h5 class="text-center">Veja outros encontros agendados</h5>
+          <h5 class="text-center">Veja todos eventos cadastrados por esse coach:</h5>
           <div class="text-center">
             <% @user.meetings.each do |meeting| %>
               <%= render "card", meeting: meeting %>
             <% end %>
           </div>
         </div>
-      </div>
-
-      <div class="row">
-        <div id="map" style="height: 300px"></div>
       </div>
     </div>
 
@@ -43,11 +49,11 @@
         <div class="reviews show">
           <div class="text-center">
             <h4>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
-              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
+              <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
+              <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
+              <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
+              <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
             </h4>
           </div>
           <h4 class="text-center">Reviews</h4>
@@ -58,8 +64,16 @@
         </div>
       </div>
     <% end %>
+
+
+
   </div>
-</div>
+  <br>
+  <%= link_to "Back home", root_path, class: "btn btn-primary" %>
+
+
+
+
 
 <script src="https://maps.googleapis.com/maps/api/js"></script>
 <script>
