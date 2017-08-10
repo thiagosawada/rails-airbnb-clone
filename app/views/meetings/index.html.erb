@@ -12,7 +12,6 @@
 
     <!-- TODO: Put your HTML code in here -->
     <div class="container text-center">
-
       <div class="row middle-page">
 
         <div class="col-xs-12 col-md-8 middle-page" >
@@ -20,39 +19,43 @@
               <% @meetings.each do |meeting| %>
                 <div class="col-xs-12 col-md-6" >
 
-                <div class="card-index">
-                  <% if meeting.user.facebook_picture_url.present? %>
-                    <%= image_tag meeting.user.facebook_picture_url, class: 'card-user' %>
-                  <% else %>
-                    <%= image_tag 'http://res.cloudinary.com/dpg1ipkol/image/upload/v1502308490/empresario_318-72886_gbwwol.png', class: 'card-user' %>
-                  <% end %>
-                  <h1>
-                    <%= link_to meeting.name, meeting_path(meeting) %>
-                  </h1>
-                  <div class="card-description">
-                    <p>
-                      <%= meeting.city + ", " + meeting.location %>
-                      <%= meeting.duration %>
 
+                  <div class="card-index">
+                    <% if meeting.user.facebook_picture_url.present? %>
+                      <%= image_tag meeting.user.facebook_picture_url, class: 'card-user' %>
+                    <% else %>
+                      <%= image_tag 'http://res.cloudinary.com/dpg1ipkol/image/upload/v1502308490/empresario_318-72886_gbwwol.png', class: 'card-user' %>
+                    <% end %>
+                    <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= meeting.photo.url %>');">
+                      <% if meeting.user.facebook_picture_url.present? %>
+                        <%= image_tag meeting.user.facebook_picture_url, class: 'card-user' %>
+                      <% else %>
+                        <%= image_tag 'http://res.cloudinary.com/dpg1ipkol/image/upload/v1502308490/empresario_318-72886_gbwwol.png', class: 'card-user' %>
+                      <% end %>
+                      <h1>
+                        <span class="card-name"><%= link_to meeting.name, meeting_path(meeting) %></span>
+                      </h1>
 
-                    </p>
-                    <p>
-                    <strong>Esporte: </strong><%= meeting.category %>
-                      <%= meeting.date %>
-                    </p>
+                      <div class="card-description">
+                        <p>
+                        <strong><p><%= meeting.city + ", " + meeting.location %></p></strong>
+                        </p>
+                      </div>
+
+                    </div>
                   </div>
 
                 </div>
-                </div>
               <% end %>
-
         </div>
 
         <div class="col-xs-12 col-md-4">
-          <div id="map" style="height: 500px"></div>
+          <div id="map" style="height: 700px;"></div>
         </div>
+
       </div>
     </div>
+
     <% content_for(:after_js) do %>
       <%= javascript_tag do %>
         $(document).ready(function() {
@@ -70,6 +73,7 @@
         });
       <% end %>
     <% end %>
+
   </body>
 </html>
 
