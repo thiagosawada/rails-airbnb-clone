@@ -45,14 +45,43 @@
   margin: 0 3px;
 }
 
-.container_meeting_show {
-  li {
-    font-size: 20px;
+.container-meeting-show{
+
+  h2, p {
+  color: $white;
+}
+}
+
+.card-meeting-body{
+    padding: 25px;
+    background-color: $white;
   }
 }
 
 
-.card-title {
-  font-weight: normal;
+
+.card-meeting-head {
+  background-size: cover;
+}
+
+.card-meeting-description {
+  padding: 20px;
+  background-color: $white;
+}
+
+
+.card-confirmed-participants {
+  display: flex
+}
+
+.participants-information {
+  padding: 20px;
+}
+
+.participants-pictures{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: $white;
 }
 
