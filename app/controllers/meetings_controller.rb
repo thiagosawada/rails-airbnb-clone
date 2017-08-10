@@ -11,11 +11,18 @@ class MeetingsController < ApplicationController
 
     if params[:where].present?
       @meetings = @meetings.where('lower(city) = ?', params[:where].downcase)
-      if params[:category].present?
-        @meetings = @meetings.where('lower(category) = ?', params[:category].downcase)
-      end
 
     end
+    if params[:category].present?
+      @meetings = @meetings.where('lower(category) = ?', params[:category].downcase)
+
+    end
+
+    if params[:date].present?
+      date = Date.parse(params[:date])
+      @meetings = @meetings.where(date: date.beginning_of_day..date.end_of_day)
+    end
+
   end
 
   def new
