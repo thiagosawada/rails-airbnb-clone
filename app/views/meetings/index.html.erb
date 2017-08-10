@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <div class="row middle-page">
+  <div class="row">
 
     <div class="col-xs-12 col-md-8" >
 
@@ -31,30 +31,20 @@
                 <span class="card-name"><%= link_to meeting.name, meeting_path(meeting) %></span>
               </h1>
 
-                 
 
-              <strong>Esporte: </strong><%= meeting.category %>
-                <%= meeting.date.to_s(:long) %>
-
-
-              <div class="card-description">
-                <strong><p><%= meeting.city + ", " + meeting.location %></p></strong>
-              </div>
+            <div class="card-description">
+              <%= meeting.category %>
+              <strong><%= meeting.date.to_s(:long) %></strong>
+              <strong><p><%= meeting.city + ", " + meeting.location %></p></strong>
             </div>
 
+            </div>
           </div>
         </div>
       <% end %>
     </div>
-  </div>
-</div>
-
-
-
     <div class="col-xs-12 col-md-4">
       <div id="map" style="height: 700px"></div>
-    </div>
-
 
     <% content_for(:after_js) do %>
       <%= javascript_tag do %>
@@ -74,3 +64,10 @@
         });
       <% end %>
     <% end %>
+  </div>
+  </div>
+</div>
+
+
+
+
