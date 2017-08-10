@@ -56,6 +56,11 @@ class MeetingsController < ApplicationController
     else
       @group = group.first
     end
+
+    @hash = Gmaps4rails.build_markers(@meeting) do |meeting, marker|
+      marker.lat meeting.latitude
+      marker.lng meeting.longitude
+    end
   end
 
   def destroy
