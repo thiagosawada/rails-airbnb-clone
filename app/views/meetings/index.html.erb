@@ -23,6 +23,10 @@
                       <h1>
                         <span class="card-name"><%= link_to meeting.name, meeting_path(meeting) %></span>
                       </h1>
+                    <p>
+                    <strong>Esporte: </strong><%= meeting.category %>
+                      <%= meeting.date.to_s(:long) %>
+                    </p>
 
                       <div class="card-description">
                         <p>
@@ -31,6 +35,7 @@
                       </div>
 
                     </div>
+
                   </div>
 
                 </div>
