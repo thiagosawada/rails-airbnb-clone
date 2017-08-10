@@ -20,3 +20,25 @@
 
 
 # trocar o NAME e DESCRIPTION da meeting
+sports = [
+["corrida", "http://res.cloudinary.com/dpg1ipkol/image/upload/v1502302422/correr_fljl0o.jpg" ],
+["cross-fit", "http://res.cloudinary.com/dpg1ipkol/image/upload/v1502399582/Crossfit6_xpvp1g.jpg" ],
+["dança", "http://res.cloudinary.com/dpg1ipkol/image/upload/v1502385562/wzdomlibvmaqqq63wjah.jpg"],
+
+["escalada", "http://res.cloudinary.com/dpg1ipkol/image/upload/v1502384114/ci3l3cnannx8wm6ldayw.jpg" ],
+["funcional", "http://res.cloudinary.com/dpg1ipkol/image/upload/v1502399667/funcional_xuhxl3.jpg" ],
+
+["montanhismo", "http://res.cloudinary.com/dpg1ipkol/image/upload/v1502398972/montanhismo_ukqszb.jpg"],
+["pilates", "http://res.cloudinary.com/dpg1ipkol/image/upload/v1502386509/bwitshdinnntknixkp6e.jpg" ],
+
+
+["slack-line", "http://res.cloudinary.com/dpg1ipkol/image/upload/v1502325468/q2btltfhlhcawk9bswkf.jpg" ],
+
+["spinning", "http://res.cloudinary.com/dpg1ipkol/image/upload/v1502393595/k2hjtf7xiluivcqngptz.jpg" ],
+["volley", "http://res.cloudinary.com/dpg1ipkol/image/upload/v1502386957/ld9x7kus3lukuuzddukc.jpg" ]
+]
+
+sports.each do |sport|
+  Category.create!(name: sport[0], photo: sport[1])
+  binding.pry
+end
