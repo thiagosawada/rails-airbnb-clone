@@ -2,7 +2,7 @@ class Meeting < ApplicationRecord
   mount_uploader :photo, PhotoUploader
   has_many :groups
   belongs_to :user
-
+  has_many :users, through: :groups
   geocoded_by :address
   after_validation :geocode, if: :location_changed? || :city_changed?
 

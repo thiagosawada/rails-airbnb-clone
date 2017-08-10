@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :meetings
   has_many :coach_meetings, class_name: "Meeting"
   has_many :reviews
+  has_many :meetings, through: :groups
 
   def self.find_for_facebook_oauth(auth)
       user_params = auth.slice(:provider, :uid)

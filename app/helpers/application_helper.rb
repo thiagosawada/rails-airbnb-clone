@@ -3,3 +3,4 @@ module ApplicationHelper
     picture || "http://placehold.it/30x30"
   end
 end
+

@@ -15,6 +15,15 @@ ActiveRecord::Schema.define(version: 20170809190851) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "categories", force: :cascade do |t|
+    t.string "category"
+    t.text "decription"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_categories_on_user_id"
+  end
+
   create_table "groups", force: :cascade do |t|
     t.bigint "meeting_id"
     t.bigint "user_id"
@@ -39,9 +48,7 @@ ActiveRecord::Schema.define(version: 20170809190851) do
     t.string "name"
     t.float "latitude"
     t.float "longitude"
-
     t.string "photo"
-
     t.index ["user_id"], name: "index_meetings_on_user_id"
   end
 
@@ -87,6 +94,7 @@ ActiveRecord::Schema.define(version: 20170809190851) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "categories", "users"
   add_foreign_key "groups", "meetings"
   add_foreign_key "groups", "users"
   add_foreign_key "meetings", "users"

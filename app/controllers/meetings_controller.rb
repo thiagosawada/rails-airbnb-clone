@@ -43,6 +43,7 @@ class MeetingsController < ApplicationController
 
   def show
     @meeting = Meeting.find(params[:id])
+    @group = Group.new
   end
 
   def destroy
