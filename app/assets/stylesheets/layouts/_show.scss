@@ -48,16 +48,14 @@
 .container-meeting-show{
 
   h2, p {
-  color: $white;
-}
-}
-
-.card-meeting-body{
-    padding: 25px;
-    background-color: $white;
+    color: $white;
   }
+}
 
-
+.card-meeting-body {
+  padding: 25px;
+  background-color: $white;
+}
 
 .card-meeting-head {
   background-size: cover;
