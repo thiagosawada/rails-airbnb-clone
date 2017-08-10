@@ -1,3 +1,4 @@
+
 <div class="container">
   <div class="row show">
     <div class="col-xs-12 <%= @user.coach ? "col-md-8" : "col-md-12" %>">
@@ -6,8 +7,10 @@
 
           <div class="flex-box">
             <div id="avatar">
+              <% if @user.facebook_picture_url.present? %><%= image_tag @user.facebook_picture_url %>
+              <% else %> <%= image_tag 'http://res.cloudinary.com/dpg1ipkol/image/upload/v1502308490/empresario_318-72886_gbwwol.png' %>
+              <% end %>
 
-              <%= image_tag "http://placehold.it/100x100", class: "img-circle" %>
             </div>
 
             <div>
@@ -16,19 +19,17 @@
               <p id="sobre"><strong><i class="fa fa-map-marker" aria-hidden="true"></i>
               </strong> <%= @user.user_city %></p>
               <p id="sobre"> <%= @user.about %></p>
-              <p id="sobre"> <%= @user.facebook_picture_url %></p>
+
             </div>
           </div>
 
-
-
             <div id="category-description">
-            <p><strong>Saiba mais sobre as modalidades que eu dou aula:</strong></p>
-              <h5><%=@user.meetings.first.category%></h5>
-              <p><%=@user.meetings.first.description%></p>
+              <p><strong>Saiba mais sobre as minhas meetings:</strong></p>
+              <% @meetings.each do |meeting| %>
+                <h5><%= meeting.category%></h5>
+                <p><%=meeting.description%></p>
+              <% end %>
             </div>
-
-
         </div>
       </div>
 
@@ -65,15 +66,13 @@
       </div>
     <% end %>
 
-
+      <div class="col-xs-12 col-md-12">
+        <%= link_to root_path, class: "btn btn-primary" do %>
+          <i class="fa fa-home"></i>
+        <% end %>
+      </div>
 
   </div>
-  <br>
-  <%= link_to "Back home", root_path, class: "btn btn-primary" %>
-
-
-
-
 
 <script src="https://maps.googleapis.com/maps/api/js"></script>
 <script>
