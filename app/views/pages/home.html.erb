@@ -38,25 +38,22 @@
       <div class="row">
 
 
-        <% @meetings.each do |meeting| %>
+        <% @users.each do |user| %>
 
           <div class="col-xs-12 col-sm-6 col-md-4">
-            <%= link_to user_path(meeting.user) do %>
+            <%= link_to user_path(user) do %>
               <div class="card-white">
-                <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('<%= meeting.photo.url %>');">
-                  <% if meeting.user.facebook_picture_url.present? %>
-                    <%= image_tag meeting.user.facebook_picture_url, class: 'card-user' %>
+                <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://res.cloudinary.com/dpg1ipkol/image/upload/v1502301417/lp_gxnqiq.jpg');">
+                  <% if user.facebook_picture_url.present? %>
+                    <%= image_tag user.facebook_picture_url, class: 'card-user' %>
                   <% else %>
                     <%= image_tag 'http://res.cloudinary.com/dpg1ipkol/image/upload/v1502308490/empresario_318-72886_gbwwol.png', class: 'card-user' %>
                   <% end %>
-                  <h4><strong><%= meeting.name%></strong></h4>
+                  <h4><strong><%= user.first_name%></strong></h4>
                   <br>
                   <br>
-                  <p><%= meeting.city%></p>
-                  <p><%= meeting.description%></p>
-
-
-
+                  <p><%= user.user_city%></p>
+                  <p><%= user.username%></p>
                 </div>
               </div>
             <% end %>

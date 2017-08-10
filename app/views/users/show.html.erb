@@ -26,7 +26,7 @@
         <div class="meetings show">
           <h5 class="text-center">Veja outros encontros agendados</h5>
           <div class="text-center">
-            <% current_user.meetings.each do |meeting| %>
+            <% @user.meetings.each do |meeting| %>
               <%= render "card", meeting: meeting %>
             <% end %>
           </div>
