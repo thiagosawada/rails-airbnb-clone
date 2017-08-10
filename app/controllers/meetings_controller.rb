@@ -48,7 +48,14 @@ class MeetingsController < ApplicationController
 
   def show
     @meeting = Meeting.find(params[:id])
-    @group = Group.new
+    # raise
+    # has_group = @meeting.groups.any? {|group| group.user == current_user }
+    group = @meeting.groups.select {|group| group.user == current_user }
+    if group.empty?
+      @group = Group.new
+    else
+      @group = group.first
+    end
   end
 
   def destroy
