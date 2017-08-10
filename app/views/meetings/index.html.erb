@@ -21,7 +21,7 @@
 
           <div class="card-index">
 
-            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= meeting.photo.url %>');">
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= meeting.category.photo %>');">
               <% if meeting.user.facebook_picture_url.present? %>
                 <%= image_tag meeting.user.facebook_picture_url, class: 'card-user' %>
               <% else %>
@@ -33,7 +33,7 @@
 
 
             <div class="card-description">
-              <%= meeting.category %>
+              <%= meeting.category.name %>
               <strong><%= meeting.date.to_s(:long) %></strong>
               <strong><p><%= meeting.city + ", " + meeting.location %></p></strong>
             </div>
