@@ -8,7 +8,6 @@ gem 'puma'
 gem 'rails', '5.1.3'
 gem 'redis'
 
-gem 'carrierwave', '~> 0.11.2'
 
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
