@@ -40,5 +40,4 @@ sports = [
 
 sports.each do |sport|
   Category.create!(name: sport[0], photo: sport[1])
-  binding.pry
 end

@@ -4,8 +4,8 @@ body {
  line-height: 1.4;
  color: $black;
 }
-h2 {
 
+h2 {
   font-weight: 200;
   font-size: 25px;
   padding: 20px;
@@ -38,18 +38,41 @@ h2 {
   }
 }
 
+.banner-content {
+  text-shadow: 0.1em 0.1em #333
+}
+
 .placeholder {
  color: grey;
+ padding: 41px;
 }
 
 .button-create-show {
- padding: 25px;
+  padding: 25px;
+  background-color: none;
+
 
   color: #828282;
-  padding: 30px;
+  padding: 34px;
 }
 
 
+.background-red {
+  background-color: #450606;
+}
+
+.color-white {
+  color: white;
+}
 
 
+.btn-color {
+  background-color: rgba(0,0,0,0);
+  text-shadow: none;
 
+}
+
+
+.background-option {
+  background-color: $cream;
+}

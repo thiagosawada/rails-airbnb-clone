@@ -1,28 +1,31 @@
-<div class="text-center">
-  <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.1) 50%), url('http://res.cloudinary.com/dpg1ipkol/image/upload/v1502402639/vantagens-periodizacao-treinos_bzcs37.png');">
+
+
+
+<div class="text-center background-red">
+  <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.1) 50%), url('http://res.cloudinary.com/dpg1ipkol/image/upload/v1502402639/vantagens-periodizacao-treinos_bzcs37.jpg');">
     <div id="header">
       <h1>Make Me Move</h1>
     </div>
 
     <div class="banner-content">
-      <h2>Encontre o seu <strong>coach</strong>!</h2>
+      <h3 id="log"></h3>
 
       <div class="row">
 
         <%= form_tag meetings_path, method: :get do %>
-          <div class="placeholder">
-            <%= text_field_tag :where, nil, placeholder: "Ex: São Paulo" %>
-            <%= text_field_tag :category, nil, placeholder: "Ex: Slackline" %>
-            <%= date_field_tag :date, nil %>
-            <%= submit_tag 'Search', class: "btn btn-sm btn-primary" %>
+          <div class="color-search">
+            <%= text_field_tag :where, nil, placeholder: "Qual cidade ?" %>
+            <%= text_field_tag :category, nil, placeholder: "Qual categoria ?" %>
+            <%= date_field_tag :date, nil, placeholder: "Qual data ?" %>
+            <%= submit_tag 'Search', class: "btn btn-sm btn-primary btn-color" %>
           </div>
         <% end %>
 
         <div class="button-create-show">
 
           <% if user_signed_in? %>
-            <%= link_to "Create a new meeting", new_meeting_path, class: "btn btn-primary" %>
-            <%= link_to "Show my meetings", user_path(current_user), class: "btn btn-primary" %>
+            <%= link_to "Create a new meeting", new_meeting_path, class: "btn btn-primary no-shadow btn-color" %>
+            <%= link_to "Show my meetings", user_path(current_user), class: "btn btn-primary no-shadow btn-color" %>
           <% end %>
           <div class="text-h2">
             <h2>Nós selecionamos <strong>os melhores treinadores</strong> para <strong><u>VOCÊ!</u></strong></h2>
@@ -33,35 +36,72 @@
     </div>
   </div>
 
-  <div class="wrapper-grey text-center">
+  <div class="container">
+    <div class="row">
+      <div class="block-ajust">
+        <div >
+         <h2><strong>Informações sobre o MakeMeMove</strong></h2>
+          <div class="col-xs-12 col-md-4">
+            <p align="justify" class="color-white">
+            <i class="fa fa-hand-spock-o fa-2x" aria-hidden="true"></i>
+              <strong><u>Cansado</u></strong> de academia?
+              Procure por diversos eventos esportivos ao ar livre na sua cidade
+            </p>
+          </div>
+
+          <div class="col-xs-12 col-md-4">
+            <p align="justify" class="color-white">
+            <i class="fa fa-certificate fa-2x" aria-hidden="true"></i>
+              Que tal tentar um esporte diferente?
+              Aqui você encontra treinos de modalidades <strong><u>'diferentonas'</u></strong> oferecidos por gente que sabe bem o que faz!
+            </p>
+          </div>
+
+           <div class="col-xs-12 col-md-4">
+            <p align="justify" class="color-white">
+            <i class="fa fa-handshake-o fa-2x" aria-hidden="true"></i>
+              <strong><u>Garanta</u></strong> seu lugar!
+              Agende sua participação pelo site e depois é só suar a camisa.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="wrapper-grey text-center background-option">
 
     <div class="container">
-      <div class="row">
+      <div class="block-description">
+        <div class="row">
 
-        <% @users.each do |user| %>
+          <% @users.each do |user| %>
 
-          <div class="col-xs-12 col-sm-6 col-md-4">
-            <%= link_to user_path(user) do %>
-              <div class="card-white">
-                <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('http://res.cloudinary.com/dpg1ipkol/image/upload/v1502385652/como-escolher-um-coach-bom_kx6fq6.png');">
-                  <% if user.facebook_picture_url.present? %>
-                    <%= image_tag user.facebook_picture_url, class: 'card-user' %>
-                  <% else %>
-                    <%= image_tag 'http://res.cloudinary.com/dpg1ipkol/image/upload/v1502308490/empresario_318-72886_gbwwol.png', class: 'card-user' %>
-                  <% end %>
-                  <h4><strong><%= user.first_name %></strong></h4>
-                  <br>
-                  <br>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+              <%= link_to user_path(user) do %>
+                <div class="card-white">
+                  <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.7)), url('http://res.cloudinary.com/dpg1ipkol/image/upload/v1502467267/alongamento_ico6jr.jpg');">
+                    <% if user.facebook_picture_url.present? %>
+                      <%= image_tag user.facebook_picture_url, class: 'card-user' %>
+                    <% else %>
+                      <%= image_tag 'http://res.cloudinary.com/dpg1ipkol/image/upload/v1502308490/empresario_318-72886_gbwwol.png', class: 'card-user' %>
+                    <% end %>
+                    <h4><strong>Coach: </strong><%= user.first_name %></h4>
+                    <br>
+                    <br>
 
-                  <p>Mas pode me chamar de...<%= user.username%></p>
-                  <p><strong><%= user.user_city%></strong></p>
+                    <p>Mas pode me chamar de <strong>"<%= user.username%>"</strong></p>
+                    <p>E moro em <strong><%= user.user_city%></strong></p>
 
+                  </div>
                 </div>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
+              <% end %>
+            </div>
 
+          <% end %>
+
+        </div>
       </div>
     </div>
 
