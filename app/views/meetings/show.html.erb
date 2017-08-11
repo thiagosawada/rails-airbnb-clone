@@ -33,10 +33,10 @@
             <% unless @meeting.groups.any? {|group| group.user == current_user } %>
               <%= simple_form_for(@group) do |g|  %>
                 <%= g.input_field :id, as: :hidden, value: @meeting.id %>
-                <%= g.submit class: "btn btn-primary" %>
+                <%= g.submit "Participe", class: "btn btn-primary"%>
               <% end %>
             <% else  %>
-              <%= link_to "Leave Meeting", group_path(@group, meeting_id: @meeting.id), class: "btn btn-danger", method: :delete %>
+              <%= link_to "Cancelar", group_path(@group, meeting_id: @meeting.id), class: "btn btn-danger", method: :delete %>
             <% end %>
           <% else %>
             <%= link_to "Enroll Meeting", new_user_session_path, class: 'btn btn-primary' %>
@@ -89,6 +89,8 @@
           <% @meeting.groups.each do |group| %>
             <% unless group.user.facebook_picture_url.nil? %>
               <%= image_tag group.user.facebook_picture_url%>
+            <% else %>
+              <%= image_tag 'http://res.cloudinary.com/dpg1ipkol/image/upload/v1502308490/empresario_318-72886_gbwwol.png', width: "50px" %>
             <% end %>
           <strong><%= group.user.first_name + " " + group.user.last_name%></strong>
           <% end %>
@@ -122,7 +124,7 @@
 </div>
 
 <br>
-    <% if current_user == @meeting.user %>
-      <%= link_to "Edit your meeting", edit_meeting_path(@meeting.id), class: "btn btn-xs btn-primary" %>
-      <%= link_to "Delete your meeting", meeting_path(@meeting.id), class: "btn btn-xs btn-danger", method: :delete, data: {confirm: "Are you sure?" } %>
-    <% end %>
+<% if current_user == @meeting.user %>
+  <%= link_to "Edit your meeting", edit_meeting_path(@meeting.id), class: "btn btn-xs btn-primary" %>
+  <%= link_to "Delete your meeting", meeting_path(@meeting.id), class: "btn btn-xs btn-danger", method: :delete, data: {confirm: "Are you sure?" } %>
+<% end %>
