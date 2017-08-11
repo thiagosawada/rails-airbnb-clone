@@ -35,12 +35,12 @@
             <% unless @meeting.groups.any? {|group| group.user == current_user } %>
               <%= simple_form_for(@group) do |g|  %>
                 <%= g.input_field :id, as: :hidden, value: @meeting.id %>
-                <%= g.submit class: "btn btn-primary" %>
+                <%= g.submit "Participe", class: "btn btn-primary"%>
               <% end %>
 
 
             <% else  %>
-              <%= link_to "Leave Meeting", group_path(@group, meeting_id: @meeting.id), class: "btn btn-danger", method: :delete %>
+              <%= link_to "Cancelar", group_path(@group, meeting_id: @meeting.id), class: "btn btn-danger", method: :delete %>
             <% end %>
 
           <% else %>
@@ -89,8 +89,13 @@
         <h2><strong>Quem já confirmou esse evento:</strong></h2>
       <div class="participants-pictures">
         <% @meeting.groups.each do |group| %>
-        <%= image_tag group.user.facebook_picture_url%>
-        <strong><%= group.user.first_name + " " + group.user.last_name%></strong>
+          <% if group.user.facebook_picture_url.present? %>
+            <%= image_tag group.user.facebook_picture_url %>
+          <% else %>
+            <%= image_tag 'http://res.cloudinary.com/dpg1ipkol/image/upload/v1502308490/empresario_318-72886_gbwwol.png', width: "50px" %>
+          <% end %>
+
+          <strong><%= group.user.first_name + " " + group.user.last_name%></strong>
 
         <% end %>
       </div>
