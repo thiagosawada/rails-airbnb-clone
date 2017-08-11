@@ -36,6 +36,8 @@ class MeetingsController < ApplicationController
     # @meeting = current_user.meetings.new(meeting_params)
     # igual a de baixo
     @meeting = Meeting.new(meeting_params)
+
+    @meeting.duration = meeting_params[:duration][/\d/]
     @meeting.user = current_user
     if @meeting.save
       redirect_to user_path(@meeting.user)
@@ -50,6 +52,7 @@ class MeetingsController < ApplicationController
   end
 
   def show
+    @review = Review.new
     @meeting = Meeting.find(params[:id])
     # raise
     # has_group = @meeting.groups.any? {|group| group.user == current_user }
