@@ -13,7 +13,7 @@
           <div class="placeholder">
             <%= text_field_tag :where, nil, placeholder: "Ex: São Paulo" %>
             <%= text_field_tag :category, nil, placeholder: "Ex: Slackline" %>
-            <%= date_field_tag :date, nil %>
+            <%= date_field_tag :date, nil, placeholder: "Ex: 23/07/1990" %>
             <%= submit_tag 'Search', class: "btn btn-sm btn-primary" %>
           </div>
         <% end %>
@@ -21,7 +21,9 @@
         <div class="button-create-show">
 
           <% if user_signed_in? %>
-            <%= link_to "Create a new meeting", new_meeting_path, class: "btn btn-primary" %>
+            <% if current_user.coach == true %>
+              <%= link_to "Create a new meeting", new_meeting_path, class: "btn btn-primary" %>
+            <% end %>
             <%= link_to "Show my meetings", user_path(current_user), class: "btn btn-primary" %>
           <% end %>
           <div class="text-h2">
@@ -39,27 +41,28 @@
       <div class="row">
 
         <% @users.each do |user| %>
+          <% if user.coach == true %>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+              <%= link_to user_path(user) do %>
+                <div class="card-white">
+                  <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('http://res.cloudinary.com/dpg1ipkol/image/upload/v1502385652/como-escolher-um-coach-bom_kx6fq6.png');">
+                    <% if user.facebook_picture_url.present? %>
+                      <%= image_tag user.facebook_picture_url, class: 'card-user' %>
+                    <% else %>
+                      <%= image_tag 'http://res.cloudinary.com/dpg1ipkol/image/upload/v1502308490/empresario_318-72886_gbwwol.png', class: 'card-user' %>
+                    <% end %>
+                    <h4><strong><%= user.first_name %></strong></h4>
+                    <br>
+                    <br>
 
-          <div class="col-xs-12 col-sm-6 col-md-4">
-            <%= link_to user_path(user) do %>
-              <div class="card-white">
-                <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('http://res.cloudinary.com/dpg1ipkol/image/upload/v1502385652/como-escolher-um-coach-bom_kx6fq6.png');">
-                  <% if user.facebook_picture_url.present? %>
-                    <%= image_tag user.facebook_picture_url, class: 'card-user' %>
-                  <% else %>
-                    <%= image_tag 'http://res.cloudinary.com/dpg1ipkol/image/upload/v1502308490/empresario_318-72886_gbwwol.png', class: 'card-user' %>
-                  <% end %>
-                  <h4><strong><%= user.first_name %></strong></h4>
-                  <br>
-                  <br>
+                    <p>Mas pode me chamar de...<%= user.username%></p>
+                    <p><strong><%= user.user_city%></strong></p>
 
-                  <p>Mas pode me chamar de...<%= user.username%></p>
-                  <p><strong><%= user.user_city%></strong></p>
-
+                  </div>
                 </div>
-              </div>
-            <% end %>
-          </div>
+              <% end %>
+            </div>
+          <% end %>
         <% end %>
 
       </div>
