@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @reviews = @user.reviews
     @meetings = @user.meetings
   end
 

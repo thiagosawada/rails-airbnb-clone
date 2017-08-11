@@ -45,28 +45,60 @@
   margin: 0 3px;
 }
 
-
+#map {
+  margin: 25px;
+}
 
 .card-meeting-body{
     padding: 25px;
-    background-color: $white;
-    color: $white;
+    background-color: $white
+    color: $black;
+
 }
 
+#confirmation-review {
+  color: $cream;
+  font-size: 25px;
+  font-family: $headers-font;
+  margin: 40px 0 40px 0;
+}
 
-.card-meeting-body {
-  padding: 25px;
-  background-color: $white;
+#page-review {
+  margin: 20px;
+}
+
+#title-review {
+  color: $black;
+  font-size: 25px;
+  font-family: $headers-font;
+  margin: 40px 0 40px 0;
+}
+
+.confirmation-show {
+  background-color: $dark-red;
 }
 
 
 .card-meeting-head {
   background-size: cover;
+  height: 195px;
+  margin: 10px 0 10px 0;
+}
+
+#aviso-fim {
+  color: $cream;
 }
 
 .card-meeting-description {
   padding: 20px;
   background-color: $white;
+  margin: 10px 0 10px 0;
+  bottom: 10px;
+
+}
+
+.card-meeting-details {
+  color: $cream;
 }
 
 
@@ -86,17 +118,18 @@
 }
 
 
+
 .card-meeting-new {
    h2 {
     color: $dark-grey;
     padding: 10px;
    }
 
-   .banner {
-    flex: x x 200px;
-}
+   
     a {
      margin-top: 10px;
     }
     color: $dark-grey;
   }
+
+
