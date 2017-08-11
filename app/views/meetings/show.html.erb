@@ -1,110 +1,130 @@
-<div class="container-meeting-show">
-
-  <div class="card-meeting-show">
-
+<div class="container">
+  <div class="row">
     <div class="col-xs-12 col-md-6">
-
-      <div class="card-meeting-head" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('<%= cl_image_path @meeting.category.photo %>');">
-
-        <div class="card-meeting-details">
-          <h2><strong><%= @meeting.category.name %></strong></h2>
-          <h2>Evento: <strong><%= @meeting.name%></strong></h2>
-          <p><%= @meeting.city %></p>
+      <div class="card-meeting-show">
+        <div class="card-meeting-head" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('<%= cl_image_path @meeting.category.photo %>');">
+          <% if Time.now > @meeting.date %>
+            <div id="aviso-fim">
+              <h1>EVENTO FINALIZADO</h1>
+            </div>
+          <% else %>
+            <div class="card-meeting-details">
+              <h2><strong><%= @meeting.category.name %></strong></h2>
+              <h2>Evento: <strong><%= @meeting.name%></strong></h2>
+              <p><%= @meeting.city %></p>
+            </div>
+          <% end %>
         </div>
-      </div>
-
-      <div class="card-meeting-body">
+        <div class="card-meeting-body">
+            <ul style="list-style-type: none">
+              <li>Local do evento: <strong><%= @meeting.location %></li></strong>
+              <li>Duração do evento: <strong><%= @meeting.duration %></li></strong>
+              <li>Capacidade do evento: <strong><%= @meeting.group_size %> pessoas</li></strong>
+              <li>Data: <strong><%= @meeting.date.to_s(:long) %></li></strong>
+            </ul>
+        </div>
+        <div class="card-meeting-description">
           <ul style="list-style-type: none">
-            <li>Local do evento: <strong><%= @meeting.location %></li></strong>
-            <li>Duração do evento: <strong><%= @meeting.duration %></li></strong>
-            <li>Capacidade do evento: <strong><%= @meeting.group_size %> pessoas</li></strong>
-            <li>Data: <strong><%= @meeting.date.to_s(:long) %></li></strong>
+            <li>Descrição: <%= @meeting.description %></li>
           </ul>
-      </div>
-
-      <br>
-
-      <div class="card-meeting-description">
-        <ul style="list-style-type: none">
-          <li>Descrição: <%= @meeting.description %></li>
-        </ul>
-      </div>
-<br>
+        </div>
+        <div id="group-buttons">
           <% if user_signed_in? %>
-
             <% unless @meeting.groups.any? {|group| group.user == current_user } %>
               <%= simple_form_for(@group) do |g|  %>
                 <%= g.input_field :id, as: :hidden, value: @meeting.id %>
                 <%= g.submit "Participe", class: "btn btn-primary"%>
               <% end %>
-
-
             <% else  %>
               <%= link_to "Cancelar", group_path(@group, meeting_id: @meeting.id), class: "btn btn-danger", method: :delete %>
             <% end %>
-
           <% else %>
             <%= link_to "Enroll Meeting", new_user_session_path, class: 'btn btn-primary' %>
           <% end %>
+        </div>
+      </div>
+    </div>
 
+
+
+
+    <div class="col-xs-12 col-md-6">
+      <div id="map" style="height: 540px"></div>
     </div>
   </div>
 </div>
 
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function() {
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        console.log(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
+      });
+    });
+  <% end %>
+<% end %>
 
 
-    <div class="col-xs-12 col-md-6">
-      <div id="map" style="height: 700px"></div>
-    </div>
-
-    <% content_for(:after_js) do %>
-      <%= javascript_tag do %>
-        $(document).ready(function() {
-          var handler = Gmaps.build('Google');
-          handler.buildMap({ internal: { id: 'map' } }, function() {
-            markers = handler.addMarkers(<%= raw @hash.to_json %>);
-            console.log(<%= raw @hash.to_json %>);
-            handler.bounds.extendWith(markers);
-            handler.fitMapToBounds();
-            if (markers.length == 0) {
-              handler.getMap().setZoom(2);
-            } else if (markers.length == 1) {
-              handler.getMap().setZoom(14);
-            }
-          });
-        });
+<div class="confirmation-show">
+  <div class="container">
+    <div class="row" id="confirmation-review">
+      <% if @meeting.groups.any? %>
+        <strong>Quem já confirmou esse evento:</strong>
+      <% else %>
+        <strong>Seja o primeiro em participar!</strong>
       <% end %>
-    <% end %>
-
-</div>
-
-
-
-<br>
-<br>
-
-  <div class="container-participants">
-    <div class="col-xs-12 col-md-6">
-      <div class="participants-information", style="padding: 10px">
-        <h2><strong>Quem já confirmou esse evento:</strong></h2>
-      <div class="participants-pictures">
-        <% @meeting.groups.each do |group| %>
-          <% if group.user.facebook_picture_url.present? %>
-            <%= image_tag group.user.facebook_picture_url %>
-          <% else %>
-            <%= image_tag 'http://res.cloudinary.com/dpg1ipkol/image/upload/v1502308490/empresario_318-72886_gbwwol.png', width: "50px" %>
-          <% end %>
-
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-4">
+        <div class="participants-pictures">
+          <% @meeting.groups.each do |group| %>
+            <% unless group.user.facebook_picture_url.nil? %>
+              <%= image_tag group.user.facebook_picture_url%>
+            <% else %>
+              <%= image_tag 'http://res.cloudinary.com/dpg1ipkol/image/upload/v1502308490/empresario_318-72886_gbwwol.png', width: "50px" %>
+            <% end %>
           <strong><%= group.user.first_name + " " + group.user.last_name%></strong>
-
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
-
-
+</div>
+<div class="container">
+  <div class="row" id="title-review">
+    <strong>Como foi sua experiência:</strong>
+  </div>
+  <div class="row">
+    <% if Time.now > @meeting.date && user_signed_in? %>
+      <% @meeting.groups.each do |group|  %>
+        <% if group.user == current_user %>
+          <div class="col-xs-12" id="page-review">
+            <%= simple_form_for(@review) do |g|  %>
+              <%= g.input :head, label: false, placeholder: "Título" %>
+              <%= g.input :description, label: false, placeholder: "Descrição" %>
+              <%= g.input :rating, collection: 1..5 %>
+              <%= g.input_field :coach_id, value: @meeting.user.id, as: :hidden %>
+              <%= g.input_field :user_id, value: current_user.id, as: :hidden %>
+              <%= g.submit class: "btn btn-primary" %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
 
 <br>
-
-      <%= link_to "Edit your meeting", edit_meeting_path(@meeting.id), class: "btn btn-xs btn-primary" %>
-      <%= link_to "Delete your meeting", meeting_path(@meeting.id), class: "btn btn-xs btn-danger", method: :delete, data: {confirm: "Are you sure?" } %>
+<% if current_user == @meeting.user %>
+  <%= link_to "Edit your meeting", edit_meeting_path(@meeting.id), class: "btn btn-xs btn-primary" %>
+  <%= link_to "Delete your meeting", meeting_path(@meeting.id), class: "btn btn-xs btn-danger", method: :delete, data: {confirm: "Are you sure?" } %>
+<% end %>
