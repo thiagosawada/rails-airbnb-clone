@@ -1,11 +1,11 @@
 .footer {
-  background: $white;
+  background: $cream;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0px 50px;
   width: 100%;
-  color: $green;
+  color: $dark-red;
   font-weight: bolder;
   opacity: 1.7;
   border-radius: 10px;
@@ -18,7 +18,7 @@
   align-items: center;
 }
 .footer-links a {
-  color: $black;
+  color: $dark-red;
   opacity: 0.4;
   text-decoration: none;
   font-size: 24px;
