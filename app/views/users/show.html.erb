@@ -18,13 +18,13 @@
               <%= "#{@user.first_name} #{@user.last_name}"  %></h4>
               <p id="sobre"><strong><i class="fa fa-map-marker" aria-hidden="true"></i>
               </strong> <%= @user.user_city %></p>
-              <p id="sobre"> <%= @user.about %></p>
+              <p id="sobre" align="justify"> <%= @user.about %></p>
 
             </div>
           </div>
 
             <div id="category-description">
-              <p><strong>Saiba mais sobre as minhas meetings:</strong></p>
+              <p><strong>Saiba mais sobre meus eventos:</strong></p>
               <% @meetings.each do |meeting| %>
                 <h5><%= meeting.category%></h5>
                 <p><%=meeting.description%></p>
@@ -37,7 +37,8 @@
         <div class="meetings show">
           <h5 class="text-center">Veja todos eventos cadastrados por esse coach:</h5>
           <div class="text-center">
-            <% @user.meetings.each do |meeting| %>
+
+            <% @user.coach_meetings.each do |meeting| %>
               <%= render "card", meeting: meeting %>
             <% end %>
           </div>
