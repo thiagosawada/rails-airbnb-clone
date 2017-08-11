@@ -25,10 +25,6 @@
 
             <div id="category-description">
               <p><strong>Saiba mais sobre as minhas meetings:</strong></p>
-              <% @meetings.each do |meeting| %>
-                <h5><%= meeting.category%></h5>
-                <p><%=meeting.description%></p>
-              <% end %>
             </div>
         </div>
       </div>
@@ -37,7 +33,7 @@
         <div class="meetings show">
           <h5 class="text-center">Veja todos eventos cadastrados por esse coach:</h5>
           <div class="text-center">
-            <% @user.meetings.each do |meeting| %>
+            <% @user.coach_meetings.each do |meeting| %>
               <%= render "card", meeting: meeting %>
             <% end %>
           </div>

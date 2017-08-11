@@ -72,7 +72,7 @@ class MeetingsController < ApplicationController
   def destroy
     @meeting = Meeting.find(params[:id])
     @meeting.destroy
-    redirect_to user_path(current_user.id)
+    redirect_to meeting_path(current_user.id)
   end
 
   private
