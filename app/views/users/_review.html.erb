@@ -1,10 +1,13 @@
 <div class="review">
-  <p class="text-right">
-    <i class="fa fa-star" aria-hidden="true"></i>
-    <i class="fa fa-star" aria-hidden="true"></i>
-    <i class="fa fa-star" aria-hidden="true"></i>
-    <i class="fa fa-star" aria-hidden="true"></i>
-    <i class="fa fa-star" aria-hidden="true"></i>
-  </p>
-  <p class="review-content"><%= @reviews.first.description %><p>
+  <% reviews.each do |review| %>
+    <div class="text-right">
+      <% review.rating.times do %>
+        <i class="fa fa-star", style="color: yellow" aria-hidden="true"></i>
+      <% end %>
+      <% (5 - review.rating).times do %>
+        <i class="fa fa-star", aria-hidden="true"></i>
+      <% end %>
+    </div>
+    <p class="review-content"><%= review.description %><p>
+  <% end %>
 </div>
