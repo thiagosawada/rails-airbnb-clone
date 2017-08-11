@@ -1,7 +1,33 @@
-<h1>Meetings#new</h1>
+<div class="container">
 
-<p>Obs.: Aqui nós vamos criar a meeting </p>
 
-<%= render partial: 'form' %>
+  <div class="card-meeting-new">
 
-<%= link_to "Back", root_path, class: "btn btn-primary" %>
+
+    <div class="col-xs-12 col-md-12">
+      <a><%= link_to "Back", root_path, class: "btn btn-primary" %></a>
+      <h1>Novo Evento</h1>
+      <h2>Crie aqui o seu evento!</h2>
+      <p>  Os campos com * são obrigatórios</p>
+
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-6">
+          <%= render partial: 'form' %>
+        </div>
+
+        <div class="col-xs-12 col-sm-6">
+          <%= image_tag 'escalada.jpg', height: '650px', width: '100%' %>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
