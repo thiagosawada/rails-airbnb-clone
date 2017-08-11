@@ -85,6 +85,18 @@
   background-color: $white;
 }
 
-.container-participants {
 
+.card-meeting-new {
+   h2 {
+    color: $dark-grey;
+    padding: 10px;
+   }
+
+   .banner {
+    flex: x x 200px;
 }
+    a {
+     margin-top: 10px;
+    }
+    color: $dark-grey;
+  }
