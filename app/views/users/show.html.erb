@@ -31,7 +31,7 @@
 
       <div class="row">
         <div class="meetings show">
-          <h5 class="text-center">Veja todos eventos cadastrados por esse coach:</h5>
+          <h5 class="text-center">Veja todos eventos cadastrados por esse esportista:</h5>
           <div class="text-center">
             <% @user.coach_meetings.each do |meeting| %>
               <%= render "card", meeting: meeting %>
