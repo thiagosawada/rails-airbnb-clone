@@ -4,23 +4,26 @@ class MeetingsController < ApplicationController
   def index
     @meetings = Meeting.all
 
-    @hash = Gmaps4rails.build_markers(@meetings) do |meeting, marker|
-      marker.lat meeting.latitude
-      marker.lng meeting.longitude
-    end
+
 
     if params[:where].present?
       @meetings = @meetings.where('lower(city) = ?', params[:where].downcase)
 
     end
     if params[:category].present?
-      @meetings = @meetings.where('lower(category) = ?', params[:category].downcase)
+      category = Category.where('name = ?', params[:category].downcase)
+      @meetings = @meetings.where('category_id = ?', category.ids)
 
     end
 
     if params[:date].present?
       date = Date.parse(params[:date])
       @meetings = @meetings.where(date: date.beginning_of_day..date.end_of_day)
+    end
+
+    @hash = Gmaps4rails.build_markers(@meetings) do |meeting, marker|
+      marker.lat meeting.latitude
+      marker.lng meeting.longitude
     end
 
   end
