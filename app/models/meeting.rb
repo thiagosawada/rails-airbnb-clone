@@ -1,6 +1,6 @@
 class Meeting < ApplicationRecord
   mount_uploader :photo, PhotoUploader
-  has_many :groups
+  has_many :groups, dependent: :destroy
   belongs_to :user
   belongs_to :category
   has_many :users, through: :groups
