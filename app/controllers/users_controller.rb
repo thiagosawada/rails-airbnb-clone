@@ -9,12 +9,12 @@ class UsersController < ApplicationController
     @reviews = @user.reviews
     @meetings = @user.meetings
 
-    sum = 0
+    # sum = 0
 
-    @reviews.each do |review|
-      sum += review.rating
-    end
-    @average = sum / @reviews.size
+    #@reviews.each do |review|
+    #  sum += review.rating
+    #end
+    # @average = sum / @reviews.size
 
   end
 
