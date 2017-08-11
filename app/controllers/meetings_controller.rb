@@ -53,6 +53,7 @@ class MeetingsController < ApplicationController
 
   def show
     @review = Review.new
+    @reviews = Review.all
     @meeting = Meeting.find(params[:id])
     # raise
     # has_group = @meeting.groups.any? {|group| group.user == current_user }
