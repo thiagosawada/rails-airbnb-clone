@@ -3,7 +3,7 @@
     <div class="col-xs-12 col-md-6">
       <div class="card-meeting-show">
         <div class="card-meeting-head" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('<%= cl_image_path @meeting.category.photo %>');">
-          <% if Time.now > @meeting.date %>
+          <% if Time.now.to_i < @meeting.date.to_i %>
             <div id="aviso-fim">
               <h1>EVENTO FINALIZADO</h1>
             </div>
@@ -25,7 +25,7 @@
         </div>
         <div class="card-meeting-description">
           <ul style="list-style-type: none">
-            <li>Descrição: <%= @meeting.description %></li>
+            <li align="justify">Descrição: <%= @meeting.description %></li>
           </ul>
 
       </div>
@@ -40,17 +40,23 @@
 <br>
         </div>
         <div id="group-buttons">
-          <% if user_signed_in? %>
-            <% unless @meeting.groups.any? {|group| group.user == current_user } %>
-              <%= simple_form_for(@group) do |g|  %>
-                <%= g.input_field :id, as: :hidden, value: @meeting.id %>
-                <%= g.submit class: "btn btn-primary" %>
+            <% if current_user != @meeting.user %>
+              <% if user_signed_in? %>
+                <% unless @meeting.groups.any? {|group| group.user == current_user } %>
+                  <%= simple_form_for(@group) do |g|  %>
+                    <%= g.input_field :id, as: :hidden, value: @meeting.id %>
+                    <%= g.submit "Participe", class: "btn btn-primary"%>
+                  <% end %>
+                <% else  %>
+                  <%= link_to "Cancelar", group_path(@group, meeting_id: @meeting.id), class: "btn btn-danger", method: :delete %>
+                <% end %>
+              <% else %>
+                <%= link_to "Enroll Meeting", new_user_session_path, class: 'btn btn-primary' %>
               <% end %>
-            <% else  %>
-              <%= link_to "Leave Meeting", group_path(@group, meeting_id: @meeting.id), class: "btn btn-danger", method: :delete %>
             <% end %>
-          <% else %>
-            <%= link_to "Enroll Meeting", new_user_session_path, class: 'btn btn-primary' %>
+          <% if current_user == @meeting.user %>
+            <%= link_to "Edit your meeting", edit_meeting_path(@meeting.id), class: "btn btn-xs btn-primary" %>
+            <%= link_to "Delete your meeting", meeting_path(@meeting.id), class: "btn btn-xs btn-danger", method: :delete, data: {confirm: "Are you sure?" } %>
           <% end %>
         </div>
       </div>
@@ -100,6 +106,8 @@
           <% @meeting.groups.each do |group| %>
             <% unless group.user.facebook_picture_url.nil? %>
               <%= image_tag group.user.facebook_picture_url%>
+            <% else %>
+              <%= image_tag 'http://res.cloudinary.com/dpg1ipkol/image/upload/v1502308490/empresario_318-72886_gbwwol.png', width: "50px" %>
             <% end %>
           <strong><%= group.user.first_name + " " + group.user.last_name%></strong>
           <% end %>
@@ -109,31 +117,41 @@
   </div>
 </div>
 <div class="container">
-  <div class="row" id="title-review">
-    <strong>Como foi sua experiência:</strong>
-  </div>
-  <div class="row">
-    <% if Time.now > @meeting.date && user_signed_in? %>
-      <% @meeting.groups.each do |group|  %>
-        <% if group.user == current_user %>
-          <div class="col-xs-12" id="page-review">
-            <%= simple_form_for(@review) do |g|  %>
-              <%= g.input :head, label: false, placeholder: "Título" %>
-              <%= g.input :description, label: false, placeholder: "Descrição" %>
-              <%= g.input :rating, collection: 1..5 %>
-              <%= g.input_field :coach_id, value: @meeting.user.id, as: :hidden %>
-              <%= g.input_field :user_id, value: current_user.id, as: :hidden %>
-              <%= g.submit class: "btn btn-primary" %>
-            <% end %>
-          </div>
-        <% end %>
+  <% review_exist = false %>
+  <% if user_signed_in? %>
+    <% @reviews.each do |review| %>
+      <% if review.coach_id == @meeting.user_id && review.user_id == current_user.id %>
+        <% review_exist = true %>
       <% end %>
     <% end %>
-  </div>
+  <% end %>
+  <% if review_exist = false %>
+    <div class="row" id="title-review">
+      <strong>Como foi sua experiência:</strong>
+    </div>
+    <div class="row">
+      <% if Time.now.to_i > @meeting.date.to_i && user_signed_in? %>
+        <% @meeting.groups.each do |group|  %>
+          <% if group.user == current_user %>
+            <div class="col-xs-12" id="page-review">
+              <%= simple_form_for(@review) do |g|  %>
+                <%= g.input :head, label: false, placeholder: "Título" %>
+                <%= g.input :description, label: false, placeholder: "Descrição" %>
+                <%= g.input :rating, collection: 1..5 %>
+                <%= g.input_field :coach_id, value: @meeting.user.id, as: :hidden %>
+                <%= g.input_field :user_id, value: current_user.id, as: :hidden %>
+                <%= g.submit class: "btn btn-primary" %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
+
+
+
 </div>
 
-<br>
-    <% if current_user == @meeting.user %>
-      <%= link_to "Edit your meeting", edit_meeting_path(@meeting.id), class: "btn btn-xs btn-primary" %>
-      <%= link_to "Delete your meeting", meeting_path(@meeting.id), class: "btn btn-xs btn-danger", method: :delete, data: {confirm: "Are you sure?" } %>
-    <% end %>
+

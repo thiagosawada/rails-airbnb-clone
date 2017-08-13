@@ -35,9 +35,8 @@
 
       <div class="row">
         <div class="meetings show">
-          <h5 class="text-center">Veja todos eventos cadastrados por esse coach:</h5>
+          <h5 class="text-center">Veja todos eventos cadastrados por esse esportista:</h5>
           <div class="text-center">
-
             <% @user.coach_meetings.each do |meeting| %>
               <%= render "card", meeting: meeting %>
             <% end %>
@@ -51,18 +50,73 @@
         <div class="reviews show">
           <div class="text-center">
             <h4>
-              <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
-              <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
-              <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
-              <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
-              <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i>
+              <%# @average.floor.times do %>
+                <!-- <i class="fa fa-star" aria-hidden="true" style="color: yellow;"></i> -->
+              <%# end %>
+              <%# if @average - @average.floor > 0.4 %>
+                <!-- <i class="fa fa-star-half-o" aria-hidden="true" style="color: yellow;"></i> -->
+              <%# else %>
+                <%# (5 - @average).times do %>
+                  <!-- <i class="fa fa-star" aria-hidden="true"></i>
+ -->                <%# end %>
+              <%# end %>
+              <i class="fa fa-star", style="color: yellow" aria-hidden="true"></i>
+              <i class="fa fa-star", style="color: yellow" aria-hidden="true"></i>
+              <i class="fa fa-star", style="color: yellow" aria-hidden="true"></i>
+              <i class="fa fa-star", style="color: yellow" aria-hidden="true"></i>
+              <i class="fa fa-star", aria-hidden="true"></i>
             </h4>
           </div>
           <h4 class="text-center">Reviews</h4>
 
-          <% 4.times do %>
-            <%= render 'review' %>
-          <% end %>
+          <%#= render 'review', reviews: @reviews %>
+
+          <div class="review">
+            <div class="text-right">
+              <i class="fa fa-star", style="color: yellow" aria-hidden="true"></i>
+              <i class="fa fa-star", style="color: yellow" aria-hidden="true"></i>
+              <i class="fa fa-star", style="color: yellow" aria-hidden="true"></i>
+              <i class="fa fa-star", style="color: yellow" aria-hidden="true"></i>
+              <i class="fa fa-star", style="color: yellow" aria-hidden="true"></i>
+            </div>
+              <p class="review-content">"Esta foi a experiência mais maravilhosa da minha vida. Queria que essa aula durasse eternamente"<p>
+          </div>
+
+          <div class="review">
+            <div class="text-right">
+              <i class="fa fa-star", style="color: yellow" aria-hidden="true"></i>
+              <i class="fa fa-star", style="color: yellow" aria-hidden="true"></i>
+              <i class="fa fa-star", style="color: yellow" aria-hidden="true"></i>
+              <i class="fa fa-star", aria-hidden="true"></i>
+              <i class="fa fa-star", aria-hidden="true"></i>
+            </div>
+              <p class="review-content">"A aula poderia ter sido melhor. Mas também tinha muita chance de ser pior. Vou esperar as próximas para me decidir"<p>
+          </div>
+
+          <div class="review">
+            <div class="text-right">
+              <i class="fa fa-star", style="color: yellow" aria-hidden="true"></i>
+              <i class="fa fa-star", style="color: yellow" aria-hidden="true"></i>
+              <i class="fa fa-star", style="color: yellow" aria-hidden="true"></i>
+              <i class="fa fa-star", aria-hidden="true"></i>
+              <i class="fa fa-star", aria-hidden="true"></i>
+            </div>
+              <p class="review-content">"O professor não foi bom. Mas como eu sou foda, não preciso dele pra aprender"<p>
+          </div>
+
+          <div class="review">
+            <div class="text-right">
+              <i class="fa fa-star", style="color: yellow" aria-hidden="true"></i>
+              <i class="fa fa-star", style="color: yellow" aria-hidden="true"></i>
+              <i class="fa fa-star", style="color: yellow" aria-hidden="true"></i>
+              <i class="fa fa-star", style="color: yellow" aria-hidden="true"></i>
+              <i class="fa fa-star", style="color: yellow" aria-hidden="true"></i>
+            </div>
+              <p class="review-content">"Pensa num professor bom. Agora multiplica por 5 milhões. Esse é o cara! "<p>
+          </div>
+
+
+
         </div>
       </div>
     <% end %>

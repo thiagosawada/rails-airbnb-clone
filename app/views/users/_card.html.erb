@@ -1,5 +1,5 @@
 
-<div class="card card-coach text-left" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= meeting.photo %>');">
+<div class="card card-coach text-left" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= meeting.category.photo %>');">
 
   <div class="card-category"><i class="fa fa-calendar-o" aria-hidden="true"></i>
 <%= meeting.date.strftime("%d/%m/%Y") %></div>
@@ -7,7 +7,7 @@
   <div class="card-description">
     <h2 class="card-title">
       <%= link_to meeting_path(meeting) do %>
-        <%=  meeting.category %>
+        <%=  meeting.category.name %>
       <% end %>
     </h2>
   </div>

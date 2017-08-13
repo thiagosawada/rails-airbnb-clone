@@ -1,13 +1,23 @@
 .card-white {
   background: white;
-  padding: 30px;
+  padding: 10px;
   box-shadow: 1px 1px 2px #e7e7e7;
   border-radius: 4px;
   margin: 15px 0 15px 0;
   height: 80%;
   color: rgb(78, 78, 78);
   box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+
+  p {
+    margin: 0 0 33.5px;
+  }
 }
+
+.card-white:hover {
+margin-top: -5px;
+}
+
 .card-index {
   background: white;
   padding: 10px;
@@ -42,7 +52,7 @@
   position: absolute;
   right: 10px;
   top: 10px;
-  width: 40px;
+  width: 50px;
   border-radius: 50%;
 }
 
@@ -106,4 +116,25 @@
 
 .text-h2 {
   padding: 53px;
+}
+
+
+.text-card-fa {
+padding: 20px;
+margin: 25px 10px 15px 20px;
+height:  20px;
+
+}
+
+.block-description {
+  min-height: 300px;
+  padding: 20px 0;
+}
+
+.color-search {
+  color: black;
+}
+
+.block-ajust {
+ height: 300px;
 }

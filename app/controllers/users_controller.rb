@@ -8,6 +8,14 @@ class UsersController < ApplicationController
   def show
     @reviews = @user.reviews
     @meetings = @user.meetings
+
+    # sum = 0
+
+    #@reviews.each do |review|
+    #  sum += review.rating
+    #end
+    # @average = sum / @reviews.size
+
   end
 
   def new
