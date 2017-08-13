@@ -4,10 +4,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :groups
-  has_many :meetings
   has_many :coach_meetings, class_name: "Meeting"
   has_many :reviews
+  has_many :groups
   has_many :meetings, through: :groups
 
   validates :username, :user_city, presence: true
