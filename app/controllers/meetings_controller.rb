@@ -4,12 +4,11 @@ class MeetingsController < ApplicationController
   def index
     @meetings = Meeting.all
 
-
-
     if params[:where].present?
       @meetings = @meetings.where('lower(city) = ?', params[:where].downcase)
 
     end
+
     if params[:category].present?
       category = Category.where('name = ?', params[:category].downcase)
       @meetings = @meetings.where('category_id = ?', category.ids)
@@ -39,7 +38,9 @@ class MeetingsController < ApplicationController
 
     @meeting.duration = meeting_params[:duration][/\d/]
     @meeting.user = current_user
+
     if @meeting.save
+      MeetingMailer.creation_confirmation(@meeting).deliver_now
       redirect_to user_path(@meeting.user)
     else
       render :new
@@ -55,7 +56,7 @@ class MeetingsController < ApplicationController
     @review = Review.new
     @reviews = Review.all
     @meeting = Meeting.find(params[:id])
-    # raise
+
     # has_group = @meeting.groups.any? {|group| group.user == current_user }
     group = @meeting.groups.select {|group| group.user == current_user }
     if group.empty?
